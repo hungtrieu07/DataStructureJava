@@ -1,8 +1,8 @@
 import java.util.*;
 
-public class ClosetPair {
+public class ClosestPair {
     static double min = Integer.MAX_VALUE;
-    static Point p1 =null ,p2 = null;
+    static Point p1 = null ,p2 = null;
     public static class Point {
         private int x;
         private int y;
@@ -18,7 +18,8 @@ public class ClosetPair {
     }
 
     public static void mindistance(List<Point> list) throws IllegalArgumentException{
-        if(list==null || list.size()<2) throw new IllegalArgumentException("Can 2 diem de bat dau.");
+        if(list==null || list.size()<2) 
+            throw new IllegalArgumentException("Can 2 diem de bat dau.");
         for(int i=0;i<list.size();i++) {
             if(list.get(i)==null)
                 throw new IllegalArgumentException("Toa do diem chua duoc khoi tao.");
@@ -26,7 +27,7 @@ public class ClosetPair {
 
         int n = list.size();
         Point[] pointsbyX = new Point[n];
-        for(int i=0;i<n;i++){
+        for(int i = 0; i < n; i++){
             pointsbyX[i] = list.get(i);
         }
 
@@ -40,7 +41,7 @@ public class ClosetPair {
             }
         });
 
-        for(int i=0;i<n-1;i++){
+        for(int i = 0; i < n-1; i++){
             if(pointsbyX[i]==pointsbyX[i+1]){
                 min = 0;
                 p1 = pointsbyX[i];
