@@ -18,10 +18,10 @@ public class ClosetPair {
     }
 
         public static void mindistance(List<Point> list) throws IllegalArgumentException{
-            if(list==null || list.size()<2) throw new IllegalArgumentException("We need atleast 2 points");
+            if(list==null || list.size()<2) throw new IllegalArgumentException("Can 2 diem de bat dau.");
             for(int i=0;i<list.size();i++) {
                 if(list.get(i)==null)
-                    throw new IllegalArgumentException("Point is not initialised");
+                    throw new IllegalArgumentException("Toa do diem chua duoc khoi tao.");
             }
             int n = list.size();
             Point[] pointsbyX = new Point[n];
@@ -57,24 +57,23 @@ public class ClosetPair {
         int mid = lo + (hi - lo) / 2;
         Point median = pointsByX[mid];
 
-        // compute closest pair with both endpoints in left subarray or both in right subarray
+        // tính toán cặp điểm gần nhất với cả 2 điểm cuối trong mảng trái hoặc cả 2 trong mảng phải
         double delta1 = closest(pointsByX, pointsByY, aux, lo, mid);
         double delta2 = closest(pointsByX, pointsByY, aux, mid+1, hi);
         double delta = Math.min(delta1, delta2);
 
-        // merge back so that pointsByY[lo..hi] are sorted by y-coordinate
+        // ghép lại vì thế mảng pointsByY[lo..hi] được sắp xếp lại bởi tọa độ y
         merge(pointsByY, aux, lo, mid, hi);
 
-        // aux[0..m-1] = sequence of points closer than delta, sorted by y-coordinate
+        // aux[0..m-1] = chuỗi các điểm gần hơn delta, được sắp xếp bởi tọa độ y
         int m = 0;
         for (int i = lo; i <= hi; i++) {
             if (Math.abs(pointsByY[i].x - median.x) < delta)
                 aux[m++] = pointsByY[i];
         }
 
-        // compare each point to its neighbors with y-coordinate closer than delta
+        // so sánh mỗi điểm với các điểm lân cận của nó với tọa độ y gần hơn với delta
         for (int i = 0; i < m; i++) {
-            // a geometric packing argument shows that this loop iterates at most 7 times
             for (int j = i+1; (j < m) && (aux[j].y - aux[i].y < delta); j++) {
                 double distance = getDistance(aux[i], aux[j]);
                 if (distance < delta) {
@@ -83,7 +82,6 @@ public class ClosetPair {
                         min = delta;
                         p1 = aux[i];
                         p2 = aux[j];
-                        // StdOut.println("better distance = " + delta + " from " + best1 + " to " + best2);
                     }
                 }
             }
@@ -92,12 +90,12 @@ public class ClosetPair {
     }
 
     private static void merge(Point[] a, Point[] aux, int lo, int mid, int hi) {
-        // copy to aux[]
+        // sao chép đến mảng aux[]
         for (int k = lo; k <= hi; k++) {
             aux[k] = a[k];
         }
 
-        // merge back to a[]
+        // ghép lại đến mảng a[]
         int i = lo, j = mid+1;
         for (int k = lo; k <= hi; k++) {
             if      (i > mid)              a[k] = aux[j++];
@@ -128,6 +126,6 @@ public class ClosetPair {
         List<Point> list = new ArrayList<>();
         list.add(p1);  list.add(p2); list.add(p3); list.add(p4); list.add(p5); list.add(p6);
         mindistance(list);
-        System.out.println("The closest pair of points are ("+p1.x+","+p1.y+") ("+p2.x+","+p2.y+") and the distance between them is "+ min);
+        System.out.println("Cặp điểm gần nhất là ("+p1.x+","+p1.y+") ("+p2.x+","+p2.y+") và khoảng cách giữa chúng là "+ min);
     }
 }
