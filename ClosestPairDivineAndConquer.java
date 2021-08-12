@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ClosestPair {
+public class ClosestPairDivineAndConquer {
     static double min = Integer.MAX_VALUE;
     static Point p1 = null ,p2 = null;
     public static class Point {
@@ -122,25 +122,21 @@ public class ClosestPair {
 
 
     public static void main(String[] args) {
+        int count = 0;
+        int initLength = 5;
         Random random = new Random();
-        Point p1 = new Point(random.nextInt(100), random.nextInt(100));
-        Point p2 = new Point(random.nextInt(100), random.nextInt(100));
-        Point p3 = new Point(random.nextInt(100), random.nextInt(100));
-        Point p4 = new Point(random.nextInt(100), random.nextInt(100));
-        Point p5 = new Point(random.nextInt(100), random.nextInt(100));
         List<Point> list = new ArrayList<>();
-        list.add(p1);  
-        list.add(p2); 
-        list.add(p3); 
-        list.add(p4); 
-        list.add(p5); 
+
+        for(int i=0; i<initLength; i++) {
+            list.add(i, new Point(random.nextInt(101), random.nextInt(101)));
+        }
+
+        long startTime = System.nanoTime();
         mindistance(list);
-        System.out.println("("+ p1.x + ")" + "(" + p1.y + ")");
-        System.out.println("("+ p2.x + ")" + "(" + p2.y + ")");
-        System.out.println("("+ p3.x + ")" + "(" + p3.y + ")");
-        System.out.println("("+ p4.x + ")" + "(" + p4.y + ")");
-        System.out.println("("+ p5.x + ")" + "(" + p5.y + ")");
-        // System.out.println("Cặp điểm gần nhất là ("+p1.x+","+p1.y+") ("+p2.x+","+p2.y+") và khoảng cách giữa chúng là "+ getMin());
-        System.out.println(getMin());
+        long endTime = System.nanoTime();
+        double duration = (endTime - startTime) / Math.pow(10, 3);
+
+        System.out.println("Min Distance: " + getMin());
+        System.out.println("Execution Time: " + duration + " milliseconds.");
     }
 }
