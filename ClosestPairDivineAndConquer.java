@@ -122,21 +122,33 @@ public class ClosestPairDivineAndConquer {
 
 
     public static void main(String[] args) {
-        int count = 0;
         int initLength = 5;
-        Random random = new Random();
-        List<Point> list = new ArrayList<>();
+        double total = 0;
+        double average = 0;
+        while(initLength<=100) {
+            for(int count = 0; count<10; count++) {
+                Random random = new Random();
+                List<Point> list = new ArrayList<>();
 
-        for(int i=0; i<initLength; i++) {
-            list.add(i, new Point(random.nextInt(101), random.nextInt(101)));
+                for(int i=0; i<initLength; i++) {
+                    list.add(i, new Point(random.nextInt(101), random.nextInt(101)));
+                }
+
+                long startTime = System.nanoTime();
+                mindistance(list);
+                long endTime = System.nanoTime();
+                double duration = (endTime - startTime) / Math.pow(10, 3);
+                total+=duration;
+
+                // System.out.println("Try " + count + " length " + initLength);
+                // System.out.println("Min Distance: " + getMin());
+                
+            }
+            average = total / 10;
+            // System.out.println("Execution Time: " + total + " milliseconds.");
+            System.out.print(average + ", ");
+            initLength+=5;
         }
 
-        long startTime = System.nanoTime();
-        mindistance(list);
-        long endTime = System.nanoTime();
-        double duration = (endTime - startTime) / Math.pow(10, 3);
-
-        System.out.println("Min Distance: " + getMin());
-        System.out.println("Execution Time: " + duration + " milliseconds.");
     }
 }
