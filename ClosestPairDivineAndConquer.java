@@ -13,10 +13,6 @@ public class ClosestPairDivineAndConquer {
         }
     }
 
-    private static double getMin(){
-        return min;
-    }
-
     public static void mindistance(List<Point> list) throws IllegalArgumentException{
         if(list==null || list.size()<2) 
             throw new IllegalArgumentException("Can 2 diem de bat dau.");
@@ -131,24 +127,21 @@ public class ClosestPairDivineAndConquer {
                 List<Point> list = new ArrayList<>();
 
                 for(int i=0; i<initLength; i++) {
-                    list.add(i, new Point(random.nextInt(101), random.nextInt(101)));
+                    list.add(i, new Point(random.nextInt(1000001), random.nextInt(1000001)));
                 }
 
                 long startTime = System.nanoTime();
                 mindistance(list);
                 long endTime = System.nanoTime();
                 double duration = (endTime - startTime) / Math.pow(10, 3);
-                total+=duration;
-
-                // System.out.println("Try " + count + " length " + initLength);
-                // System.out.println("Min Distance: " + getMin());
-                
+                total+=duration;           
             }
+
             average = total / 10;
-            // System.out.println("Execution Time: " + total + " milliseconds.");
             System.out.print(average + ", ");
             initLength+=5;
         }
+        System.out.println();
 
     }
 }
