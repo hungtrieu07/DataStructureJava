@@ -122,20 +122,24 @@ public class ClosestPair {
 
 
     public static void main(String[] args) {
-        Point p1 = new Point(1,1);
-        Point p2 = new Point(10,10);
-        Point p3 = new Point(100,100);
-        Point p4 = new Point(1000,1000);
-        Point p5 = new Point(10000,10000);
-        Point p6 = new Point(100000,100000);
+        Random random = new Random();
+        Point p1 = new Point(random.nextInt(100), random.nextInt(100));
+        Point p2 = new Point(random.nextInt(100), random.nextInt(100));
+        Point p3 = new Point(random.nextInt(100), random.nextInt(100));
+        Point p4 = new Point(random.nextInt(100), random.nextInt(100));
+        Point p5 = new Point(random.nextInt(100), random.nextInt(100));
         List<Point> list = new ArrayList<>();
         list.add(p1);  
         list.add(p2); 
         list.add(p3); 
         list.add(p4); 
         list.add(p5); 
-        list.add(p6);
         mindistance(list);
+        System.out.println("("+ p1.x + ")" + "(" + p1.y + ")");
+        System.out.println("("+ p2.x + ")" + "(" + p2.y + ")");
+        System.out.println("("+ p3.x + ")" + "(" + p3.y + ")");
+        System.out.println("("+ p4.x + ")" + "(" + p4.y + ")");
+        System.out.println("("+ p5.x + ")" + "(" + p5.y + ")");
         // System.out.println("Cặp điểm gần nhất là ("+p1.x+","+p1.y+") ("+p2.x+","+p2.y+") và khoảng cách giữa chúng là "+ getMin());
         System.out.println(getMin());
     }
