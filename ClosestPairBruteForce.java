@@ -13,14 +13,14 @@ public class ClosestPairBruteForce {
         }
     }
 	private static double distance(Point a, Point b){
-		//calculate the distance between two points
+		//tính khoảng cách giữa 2 điểm
 		double xDiff = a.x + b.x;
 		double yDiff = a.y + b.y;
 		return Math.sqrt(xDiff * xDiff + yDiff * yDiff);
 	}
 
 	private static Point[] bruteForce(Point[] sortByX, Point[] sortByY){
-		//brute force to find the closest pair when the size is small enough
+		//tìm cặp điểm gần nhất cho tới khi kích thước mảng nhỏ nhất
 		double min = distance(sortByX[0],sortByX[1]);
 		Point[] pair = new Point[2];
 		pair[0] = sortByX[0];
@@ -46,26 +46,27 @@ public class ClosestPairBruteForce {
 	}
 
 	public static void main(String[] args) {
-        int initLength = 5;
+        int initLength = 5;		//khởi tạo kích thước mảng ban đầu
         double total = 0;
         double average = 0;
-        while(initLength<=100) {
+        while(initLength<=100) {	//lặp cho tới khi kích thước mảng = 100
             Point[] a = new Point[initLength];
             for(int count=0; count<10; count++) {
                 Random random = new Random();
                 for(int i=0; i<initLength; i++) {
-                    a[i] = new Point(random.nextInt(1000001),random.nextInt(1000001));
+                    a[i] = new Point(random.nextInt(1000001),random.nextInt(1000001));	//khởi tạo cặp điểm random
                 }
-                long startTime = System.nanoTime();
-                bruteForce(a, a);
-                long endTime = System.nanoTime();
-                double duration = (endTime - startTime) / Math.pow(10, 3);
+                long startTime = System.nanoTime();		//thời gian bắt đầu
+                bruteForce(a, a);						//thực hiện thuật toán
+                long endTime = System.nanoTime();		//thời gian kết thúc
+                double duration = (endTime - startTime) / Math.pow(10, 3);	//tính thời gian thực thi lệnh
                 total+=duration; 
             }
 
-            average = total / 10;
-            System.out.print(average + ", ");
-            initLength+=5;
+            average = total / 10;	//thời gian trung bình thực thi lệnh
+            // System.out.print(average + ", ");
+			System.out.println("Thời gian chạy thuật toán với kích thước mảng = "+initLength+" là: "+ average);
+            initLength+=5;	//tăng kích thước mảng + 5
         }
         System.out.println();
 	}

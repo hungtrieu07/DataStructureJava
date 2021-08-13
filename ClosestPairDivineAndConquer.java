@@ -118,28 +118,29 @@ public class ClosestPairDivineAndConquer {
 
 
     public static void main(String[] args) {
-        int initLength = 5;
+        int initLength = 5;     //khởi tạo kích thước mảng ban đầu
         double total = 0;
         double average = 0;
         while(initLength<=100) {
             for(int count = 0; count<10; count++) {
                 Random random = new Random();
-                List<Point> list = new ArrayList<>();
+                List<Point> list = new ArrayList<>();   //khởi tạo list
 
                 for(int i=0; i<initLength; i++) {
-                    list.add(i, new Point(random.nextInt(1000001), random.nextInt(1000001)));
+                    list.add(i, new Point(random.nextInt(1000001), random.nextInt(1000001)));   //add điểm random vào list
                 }
 
-                long startTime = System.nanoTime();
-                mindistance(list);
-                long endTime = System.nanoTime();
-                double duration = (endTime - startTime) / Math.pow(10, 3);
+                long startTime = System.nanoTime(); //thời gian bắt đầu
+                mindistance(list);                  //bắt đầu thuật toán tìm cặp điểm gần nhất
+                long endTime = System.nanoTime();   //thời gian kết thúc
+                double duration = (endTime - startTime) / Math.pow(10, 3);      //tính thời gian thực thi lệnh
                 total+=duration;           
             }
 
-            average = total / 10;
-            System.out.print(average + ", ");
-            initLength+=5;
+            average = total / 10;                   //tính thời gian trung bình thực thi lệnh
+            // System.out.print(average + ", ");
+            System.out.println("Thời gian chạy thuật toán với kích thước mảng = " + initLength + " là: " + average);
+            initLength+=5;                          //tăng kích thước mảng
         }
         System.out.println();
 
