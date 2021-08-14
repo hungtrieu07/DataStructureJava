@@ -75,6 +75,7 @@ public class ClosestPairDivineAndConquer {
 
         // so sánh mỗi điểm với các điểm lân cận của nó với tọa độ y gần hơn với delta
         for (int i = 0; i < m; i++) {
+            //lặp 7 lần
             for (int j = i+1; (j < m) && (aux[j].y - aux[i].y < delta); j++) {
                 double distance = getDistance(aux[i], aux[j]);
                 if (distance < delta) {
@@ -118,10 +119,10 @@ public class ClosestPairDivineAndConquer {
 
 
     public static void main(String[] args) {
-        int initLength = 5;     //khởi tạo kích thước mảng ban đầu
+        int initLength = 10;     //khởi tạo kích thước mảng ban đầu
         double total = 0;
         double average = 0;
-        while(initLength<=100) {
+        while(initLength<=(Math.pow(10, 9))) {
             for(int count = 0; count<10; count++) {
                 Random random = new Random();
                 List<Point> list = new ArrayList<>();   //khởi tạo list
@@ -130,17 +131,17 @@ public class ClosestPairDivineAndConquer {
                     list.add(i, new Point(random.nextInt(1000001), random.nextInt(1000001)));   //add điểm random vào list
                 }
 
-                long startTime = System.nanoTime(); //thời gian bắt đầu
+                long startTime = System.currentTimeMillis(); //thời gian bắt đầu
                 mindistance(list);                  //bắt đầu thuật toán tìm cặp điểm gần nhất
-                long endTime = System.nanoTime();   //thời gian kết thúc
-                double duration = (endTime - startTime) / Math.pow(10, 3);      //tính thời gian thực thi lệnh
+                long endTime = System.currentTimeMillis();   //thời gian kết thúc
+                double duration = (endTime - startTime);      //tính thời gian thực thi lệnh
                 total+=duration;           
             }
 
             average = total / 10;                   //tính thời gian trung bình thực thi lệnh
             // System.out.print(average + ", ");
             System.out.println("Thời gian chạy thuật toán với kích thước mảng = " + initLength + " là: " + average);
-            initLength+=5;                          //tăng kích thước mảng
+            initLength*=10;                          //tăng kích thước mảng
         }
         System.out.println();
 
