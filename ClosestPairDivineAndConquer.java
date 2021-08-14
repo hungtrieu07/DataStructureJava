@@ -119,10 +119,10 @@ public class ClosestPairDivineAndConquer {
 
 
     public static void main(String[] args) {
-        int initLength = 10;     //khởi tạo kích thước mảng ban đầu
+        int initLength = 2;     //khởi tạo kích thước mảng ban đầu
         double total = 0;
         double average = 0;
-        while(initLength<=(Math.pow(10, 9))) {
+        while(initLength<=(Math.pow(2, 10))) {
             for(int count = 0; count<10; count++) {
                 Random random = new Random();
                 List<Point> list = new ArrayList<>();   //khởi tạo list
@@ -131,17 +131,17 @@ public class ClosestPairDivineAndConquer {
                     list.add(i, new Point(random.nextInt(1000001), random.nextInt(1000001)));   //add điểm random vào list
                 }
 
-                long startTime = System.currentTimeMillis(); //thời gian bắt đầu
+                long startTime = System.nanoTime(); //thời gian bắt đầu
                 mindistance(list);                  //bắt đầu thuật toán tìm cặp điểm gần nhất
-                long endTime = System.currentTimeMillis();   //thời gian kết thúc
-                double duration = (endTime - startTime);      //tính thời gian thực thi lệnh
+                long endTime = System.nanoTime();   //thời gian kết thúc
+                double duration = (endTime - startTime) / Math.pow(10, 6);      //tính thời gian thực thi lệnh
                 total+=duration;           
             }
 
             average = total / 10;                   //tính thời gian trung bình thực thi lệnh
-            // System.out.print(average + ", ");
-            System.out.println("Thời gian chạy thuật toán với kích thước mảng = " + initLength + " là: " + average);
-            initLength*=10;                          //tăng kích thước mảng
+            System.out.print(average + ", ");
+            // System.out.println("Thời gian chạy thuật toán với kích thước mảng = " + initLength + " là: " + average);
+            initLength*=2;                          //tăng kích thước mảng
         }
         System.out.println();
 

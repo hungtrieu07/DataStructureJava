@@ -46,10 +46,10 @@ public class ClosestPairBruteForce {
 	}
 
 	public static void main(String[] args) {
-        int initLength = 5;		//khởi tạo kích thước mảng ban đầu
+        int initLength = 2;		//khởi tạo kích thước mảng ban đầu
         double total = 0;
         double average = 0;
-        while(initLength<=100) {	//lặp cho tới khi kích thước mảng = 100
+        while(initLength<=Math.pow(2, 10)) {	//lặp cho tới khi kích thước mảng = 100
             Point[] a = new Point[initLength];
             for(int count=0; count<10; count++) {
                 Random random = new Random();
@@ -59,14 +59,14 @@ public class ClosestPairBruteForce {
                 long startTime = System.nanoTime();		//thời gian bắt đầu
                 bruteForce(a, a);						//thực hiện thuật toán
                 long endTime = System.nanoTime();		//thời gian kết thúc
-                double duration = (endTime - startTime) / Math.pow(10, 3);	//tính thời gian thực thi lệnh
+                double duration = (endTime - startTime) / Math.pow(10, 6);	//tính thời gian thực thi lệnh
                 total+=duration; 
             }
 
             average = total / 10;	//thời gian trung bình thực thi lệnh
-            // System.out.print(average + ", ");
-			System.out.println("Thời gian chạy thuật toán với kích thước mảng = "+initLength+" là: "+ average);
-            initLength+=5;	//tăng kích thước mảng + 5
+            System.out.print(average + ", ");
+			// System.out.println("Thời gian chạy thuật toán với kích thước mảng = "+initLength+" là: "+ average);
+            initLength*=2;	//tăng kích thước mảng * 10
         }
         System.out.println();
 	}
